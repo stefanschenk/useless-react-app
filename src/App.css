@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.App-left {
+  text-align: left;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -25,4 +29,34 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.QuoteSearch-quoteblock {
+  border: 1px #a9d5de solid;
+  border-bottom: 1px #1f88be solid;
+  padding: 10px 10px 20px 10px;
+  margin: 10px 0 10px 0;
+}
+
+.QuoteSearch-quoteblock:hover {
+  background-color: #3ac0ff;
+}
+
+.QuoteSearch-quote {
+  font-family: Georgia, serif;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: left;
+}
+
+.QuoteSearch-communicator {
+  font-size: 1em;
+  font-weight: bold;
+  text-align: left;
+}
+
+.QuoteSearch-source {
+  color: #545454;
+  font-size: 1em;
+  font-style: italic;
 }

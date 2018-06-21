@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import SelectedFoods from "./SelectedFoods";
-import FoodSearch from "./FoodSearch";
+import SelectedQuotes from "./SelectedQuotes";
+import QuoteSearch from "./QuoteSearch";
 
 class App extends Component {
   state = {
@@ -26,18 +25,14 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to the <i>not so</i> Useless React App</h1>
-        </header>
-          <div className="ui text container">
-            <SelectedFoods
-              foods={selectedFoods}
-              onFoodClick={this.removeFoodItem}
-            />
-            <FoodSearch onFoodClick={this.addFood} />
-          </div>
+        <div className="ui text container">
+          <SelectedQuotes
+            foods={selectedFoods}
+            onFoodClick={this.removeFoodItem}
+          />
+          <QuoteSearch onFoodClick={this.addFood} />
         </div>
+      </div>
     );
   }
 }
