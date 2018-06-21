@@ -50,10 +50,8 @@ class FoodSearch extends React.Component {
     const foodRows = foods.map((food, idx) => (
       <tr key={idx} onClick={() => this.props.onFoodClick(food)}>
         <td>{food.quote}</td>
-        <td className="right aligned">{food.kcal}</td>
-        <td className="right aligned">{food.protein_g}</td>
-        <td className="right aligned">{food.fat_g}</td>
-        <td className="right aligned">{food.carbohydrate_g}</td>
+        <td className="right aligned">{food.communicator}</td>
+        <td className="right aligned">{food.source}</td>
       </tr>
     ));
 
@@ -68,7 +66,7 @@ class FoodSearch extends React.Component {
                     <input
                       className="prompt"
                       type="text"
-                      placeholder="Search foods..."
+                      placeholder="Filter quotes..."
                       value={this.state.searchValue}
                       onChange={this.handleSearchChange}
                     />
@@ -83,11 +81,9 @@ class FoodSearch extends React.Component {
               </th>
             </tr>
             <tr>
-              <th className="eight wide">Description</th>
-              <th>Kcal</th>
-              <th>Protein (g)</th>
-              <th>Fat (g)</th>
-              <th>Carbs (g)</th>
+              <th className="eight wide">Quote</th>
+              <th>Door</th>
+              <th>Bron</th>
             </tr>
           </thead>
           <tbody>
