@@ -5,7 +5,7 @@ const MATCHING_ITEM_LIMIT = 25;
 
 class QuoteSearch extends React.Component {
   state = {
-    foods: [],
+    quotes: [],
     beforeFilter: [],
     showRemoveIcon: false,
     searchValue: "",
@@ -14,13 +14,13 @@ class QuoteSearch extends React.Component {
   };
 
   componentDidMount() {
-    Client.search("", foods => {
+    Client.search("", quotes => {
       this.setState({
-        foods: foods.slice(0, MATCHING_ITEM_LIMIT)
+        quotes: quotes.slice(0, MATCHING_ITEM_LIMIT)
       });
 
       this.setState({
-        beforeFilter: this.state.foods
+        beforeFilter: this.state.quotes
       })
     });
   }
@@ -36,8 +36,8 @@ class QuoteSearch extends React.Component {
 
     if (value === "") {
       this.setState({
-        foods: this.state.beforeFilter.filter(food => food.quote.toLowerCase().indexOf("") >= 0)
-          .filter(food => food.communicator.toLowerCase().indexOf(this.state.filterCommunicator) >= 0),
+        quotes: this.state.beforeFilter.filter(quote => quote.quote.toLowerCase().indexOf("") >= 0)
+          .filter(quote => quote.communicator.toLowerCase().indexOf(this.state.filterCommunicator) >= 0),
         filterQuote: "",
         showRemoveIcon: false
       });
@@ -47,8 +47,8 @@ class QuoteSearch extends React.Component {
       });
 
       this.setState({
-        foods: this.state.beforeFilter.filter(food => food.quote.toLowerCase().indexOf(value) >= 0)
-          .filter(food => food.communicator.toLowerCase().indexOf(this.state.filterCommunicator) >= 0)
+        quotes: this.state.beforeFilter.filter(quote => quote.quote.toLowerCase().indexOf(value) >= 0)
+          .filter(quote => quote.communicator.toLowerCase().indexOf(this.state.filterCommunicator) >= 0)
       });
     }
   };
@@ -64,44 +64,44 @@ class QuoteSearch extends React.Component {
 
     if (value === "") {
       this.setState({
-        foods: this.state.beforeFilter.filter(food => food.quote.toLowerCase().indexOf(this.state.filterQuote) >= 0)
-          .filter(food => food.communicator.toLowerCase().indexOf("") >= 0),
+        quotes: this.state.beforeFilter.filter(quote => quote.quote.toLowerCase().indexOf(this.state.filterQuote) >= 0)
+          .filter(quote => quote.communicator.toLowerCase().indexOf("") >= 0),
         filterCommunicator: ""
       });
     } else {
       this.setState({
-        foods: this.state.beforeFilter.filter(food => food.quote.toLowerCase().indexOf(this.state.filterQuote) >= 0)
-          .filter(food => food.communicator.toLowerCase().indexOf(value) >= 0)
+        quotes: this.state.beforeFilter.filter(quote => quote.quote.toLowerCase().indexOf(this.state.filterQuote) >= 0)
+          .filter(quote => quote.communicator.toLowerCase().indexOf(value) >= 0)
       });
     }
   };
 
   handleFilterQuoteCancel = () => {
     this.setState({
-      foods: this.state.beforeFilter.filter(food => food.quote.toLowerCase().indexOf("") >= 0)
-        .filter(food => food.communicator.toLowerCase().indexOf(this.state.filterCommunicator) >= 0),
+      quotes: this.state.beforeFilter.filter(quote => quote.quote.toLowerCase().indexOf("") >= 0)
+        .filter(quote => quote.communicator.toLowerCase().indexOf(this.state.filterCommunicator) >= 0),
       showRemoveIcon: false,
       filterQuote: ""
     });
   };
 
   render() {
-    const { showRemoveIcon, foods } = this.state;
+    const { showRemoveIcon, quotes } = this.state;
     const removeIconStyle = showRemoveIcon ? {} : { visibility: "hidden" };
     const bold = { fontWeight: "bold" };
 
-    const quoteDivs = foods.map((food, idx) => (
-      <div className="QuoteSearch-quoteblock" key={idx} onClick={() => this.props.onFoodClick(food)}>
-        <p className="QuoteSearch-quote">&#8220;{food.quote}&#8221;</p>
+    const quoteDivs = quotes.map((quote, idx) => (
+      <div className="QuoteSearch-quoteblock" key={idx} onClick={() => this.props.onQuoteClick(quote)}>
+        <p className="QuoteSearch-quote">&#8220;{quote.quote}&#8221;</p>
         <p className="App-left">
-          <span className="QuoteSearch-communicator">&mdash;&nbsp;{food.communicator},&nbsp;</span>
-          <span className="QuoteSearch-source">{food.source}</span>
+          <span className="QuoteSearch-communicator">&mdash;&nbsp;{quote.communicator},&nbsp;</span>
+          <span className="QuoteSearch-source">{quote.source}</span>
         </p>
       </div>
     ));
 
     return (
-      <div id="food-search">
+      <div id="quote-search">
         <span className="ui fluid search">
           <div className="ui icon input">
             <input

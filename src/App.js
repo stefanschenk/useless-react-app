@@ -6,42 +6,35 @@ import ContactForm from "./ContactForm";
 
 class App extends Component {
   state = {
-    selectedFoods: []
+    selectedQuotes: []
   };
 
-  removeFoodItem = itemIndex => {
-    const filteredFoods = this.state.selectedFoods.filter(
+  removeQuoteItem = itemIndex => {
+    const filteredQuotes = this.state.selectedQuotes.filter(
       (item, idx) => itemIndex !== idx
     );
-    this.setState({ selectedFoods: filteredFoods });
+    this.setState({ selectedQuotes: filteredQuotes });
   };
 
-  addFood = food => {
-    const newFoods = this.state.selectedFoods.concat(food);
-    this.setState({ selectedFoods: newFoods });
+  addQuote = quote => {
+    const newQuotes = this.state.selectedQuotes.concat(quote);
+    this.setState({ selectedQuotes: newQuotes });
   };
 
   render() {
-    const { selectedFoods } = this.state;
+    const { selectedQuotes } = this.state;
 
     return (
       <div className="App rowC">
         <div className="ui text container">
           <SelectedQuotes
-            foods={selectedFoods}
-            onFoodClick={this.removeFoodItem}
+            quotes={selectedQuotes}
+            onQuoteClick={this.removeQuoteItem}
           />
-          <QuoteSearch onFoodClick={this.addFood} />
+          <QuoteSearch onQuoteClick={this.addQuote} />
         </div>
         <div className="ui text container">
-          {/*onFoodClick={this.addFood}*/}
-          {/*<ContactList />*/}
           <ContactForm />
-          {/*<Content inputDatas={inputDatas}/>*/}
-          {/*<SelectedQuotes*/}
-            {/*foods={selectedFoods}*/}
-            {/*onFoodClick={this.removeFoodItem}*/}
-          {/*/>*/}
         </div>
       </div>
     );
