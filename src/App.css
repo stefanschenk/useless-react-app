@@ -44,19 +44,31 @@
 
 .QuoteSearch-quote {
   font-family: Georgia, serif;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: bold;
   text-align: left;
 }
 
 .QuoteSearch-communicator {
-  font-size: 1em;
+  font-size: 0.9em;
   font-weight: bold;
   text-align: left;
 }
 
 .QuoteSearch-source {
   color: #545454;
-  font-size: 1em;
+  font-size: 0.9em;
   font-style: italic;
+}
+
+.rowC{display:flex; flex-direction:row;}
+
+.contact-form {
+  text-align: left;
+}
+
+.saved-contacts {
+  border-bottom: 1px #1f88be solid;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
