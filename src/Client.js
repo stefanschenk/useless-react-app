@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 function search(query, cb) {
-  return fetch(`https://useless-api.azurewebsites.net/quotes`, {
+  return fetch(`http://localhost:3001/quotes`, {
     accept: "application/json"
   })
     .then(checkStatus)

@@ -1,7 +1,10 @@
 /* eslint-disable no-undef */
+// const contactHost = 'https://useless-api.azurewebsites.net/contacts';
+const contactHost = 'http://localhost:3001/contacts';
+
 function getAll(cb) {
-  return fetch(`https://useless-api.azurewebsites.net/contacts`, {
-    accept: "application/json"
+  return fetch(`${contactHost}`, {
+    headers: {"Accept": "application/json"}
   })
     .then(checkStatus)
     .then(parseJSON)
@@ -9,7 +12,7 @@ function getAll(cb) {
 }
 
 function getOne(id, cb) {
-  return fetch(`https://useless-api.azurewebsites.net/contacts/${id}`, {
+  return fetch(`${contactHost}/${id}`, {
     accept: "application/json"
   })
     .then(checkStatus)
@@ -18,7 +21,7 @@ function getOne(id, cb) {
 }
 
 function deleteOne(id, cb) {
-  return fetch(`https://useless-api.azurewebsites.net/contacts/${id}`, {
+  return fetch(`${contactHost}/${id}`, {
     method: "delete"
   })
     .then(checkStatus)
@@ -27,7 +30,7 @@ function deleteOne(id, cb) {
 
 function saveOne(id, contact, cb) {
   if (id === "") {
-    return fetch(`https://useless-api.azurewebsites.net/contacts`, {
+    return fetch(`${contactHost}`, {
       method: "post",
       headers: {"Content-Type":"application/json"},
       body: JSON.stringify(contact)
@@ -36,7 +39,7 @@ function saveOne(id, contact, cb) {
       .then(parseJSON)
       .then(cb)
   } else {
-    return fetch(`https://useless-api.azurewebsites.net/contacts/${id}`, {
+    return fetch(`${contactHost}/${id}`, {
       method: "put",
       headers: {"Content-Type":"application/json"},
       body: JSON.stringify(contact)
