@@ -11,6 +11,15 @@ function getAll(cb) {
     .then(cb);
 }
 
+function getCount(cb) {
+  return fetch(`${contactHost}/count`, {
+    headers: {"Accept": "application/json"}
+  })
+    .then(checkStatus)
+    .then(parseJSON)
+    .then(cb);
+}
+
 function getOne(id, cb) {
   return fetch(`${contactHost}/${id}`, {
     accept: "application/json"
@@ -64,5 +73,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const ContactsClient = { deleteOne, getAll, getOne, saveOne };
+const ContactsClient = { deleteOne, getAll, getCount, getOne, saveOne };
 export default ContactsClient;

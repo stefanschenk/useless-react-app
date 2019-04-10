@@ -1,7 +1,18 @@
 /* eslint-disable no-undef */
+const quotesHost = 'http://localhost:3001/quotes';
+
 function search(query, cb) {
-  return fetch(`http://localhost:3001/quotes`, {
+  return fetch(`${quotesHost}`, {
     accept: "application/json"
+  })
+    .then(checkStatus)
+    .then(parseJSON)
+    .then(cb);
+}
+
+function getCount(cb) {
+  return fetch(`${quotesHost}/count`, {
+    headers: {"Accept": "application/json"}
   })
     .then(checkStatus)
     .then(parseJSON)
@@ -23,5 +34,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = { search };
+const Client = { search, getCount };
 export default Client;

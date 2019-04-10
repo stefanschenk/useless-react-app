@@ -2,6 +2,7 @@ import React from "react";
 import ContactsClient from "./ContactsClient";
 
 
+
 class ContactForm extends React.Component {
   state = {
     contacts: [],
@@ -23,6 +24,12 @@ class ContactForm extends React.Component {
     this.getAllContacts()
   };
 
+  countAllContacts() {
+    ContactsClient.getCount(result => {
+      window.sessionStorage.setItem("contactsCount", result.count);
+    });
+  }
+
   getAllContacts() {
     ContactsClient.getAll(contacts => {
       this.setState({
@@ -41,6 +48,8 @@ class ContactForm extends React.Component {
   };
 
   deleteContact = () => {
+    let {updateCount} = this.props;
+
     this.setState({
       successHeader: "Contact Removed"
     });
@@ -61,10 +70,13 @@ class ContactForm extends React.Component {
       });
 
       this.getAllContacts();
+      updateCount();
     })
   };
 
   saveContact = (event) => {
+    let {updateCount} = this.props;
+
     event.preventDefault();
 
     const contact = {
@@ -95,6 +107,7 @@ class ContactForm extends React.Component {
       });
 
       this.getAllContacts();
+      updateCount();
     });
   };
 
