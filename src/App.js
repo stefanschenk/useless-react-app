@@ -161,7 +161,7 @@ class App extends Component {
       const { username, password } = this.state;
 
       return (
-        <div className="ui placeholder segment">
+        <div id="login-segment" className="ui placeholder segment">
           <div className={`ui ${authEnabledErrorVisibility} error message`}>
             <div className="header">Authorization disabled!</div>
             Authorization is disabled for this website.
@@ -251,7 +251,7 @@ class App extends Component {
 
     if (isAuthorized) {
       return (
-        <div className="ui placeholder segment">
+        <div id="welcome-segment" className="ui placeholder segment">
           <div>
             <h2>Welcome</h2>
             <p>
