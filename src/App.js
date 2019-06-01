@@ -206,7 +206,14 @@ class App extends Component {
                 </div>
               </div>
               <div className="middle aligned column">
-                <div className="ui big button">
+                <div
+                  className="ui big button"
+                  onClick={() => {
+                    alert(
+                      "It is not possible to signup to this awesome website at this moment!"
+                    );
+                  }}
+                >
                   <i className="signup icon" />
                   Sign Up
                 </div>

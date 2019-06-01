@@ -1,5 +1,5 @@
 function authorizationEnabled() {
-  return true;
+  return false;
 }
 
 function listUsers() {
@@ -12,7 +12,12 @@ function listUsers() {
     {
       username: "mr_contacts",
       password: "1234Pass!",
-      pages: ["contacts"]
+      pages: ["[deleted]"]
+    },
+    {
+      username: "mr_allrights",
+      password: "!ssaP4321",
+      pages: ["contacts", "quotes"]
     }
   ];
 }

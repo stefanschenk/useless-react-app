@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const quotesHost = 'http://localhost:3001/quotes';
+const quotesHost = "http://useless-api.dev/api/quotes";
 
 function search(query, cb) {
   return fetch(`${quotesHost}`, {
@@ -12,7 +12,7 @@ function search(query, cb) {
 
 function getCount(cb) {
   return fetch(`${quotesHost}/count`, {
-    headers: {"Accept": "application/json"}
+    headers: { Accept: "application/json" }
   })
     .then(checkStatus)
     .then(parseJSON)
