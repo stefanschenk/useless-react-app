@@ -40,7 +40,7 @@ class App extends Component {
 
   componentDidMount() {
     this.countAllContacts();
-    this.countAllQuotes();
+    // this.countAllQuotes();
 
     if (isNullOrUndefined(sessionStorage.getItem("isAuthorized"))) {
       sessionStorage.setItem("isAuthorized", false);
@@ -52,6 +52,11 @@ class App extends Component {
       this.setState({
         contactsCount: result.count
       });
+    }).catch(() => {
+      console.warn("Can't reach contacts api!");
+      this.setState({
+        contactsCount: 0
+      });
     });
   }
 
@@ -59,6 +64,11 @@ class App extends Component {
     Client.getCount(result => {
       this.setState({
         quotesCount: result.count
+      });
+    }).catch(() => {
+      console.warn("Can't reach quotes api!");
+      this.setState({
+        quotesCount: 0
       });
     });
   }
