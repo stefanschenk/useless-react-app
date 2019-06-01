@@ -1,8 +1,6 @@
 import React from "react";
 import ContactsClient from "./ContactsClient";
 
-
-
 class ContactForm extends React.Component {
   state = {
     contacts: [],
@@ -21,8 +19,8 @@ class ContactForm extends React.Component {
   };
 
   componentDidMount() {
-    this.getAllContacts()
-  };
+    this.getAllContacts();
+  }
 
   countAllContacts() {
     ContactsClient.getCount(result => {
@@ -39,16 +37,16 @@ class ContactForm extends React.Component {
   }
 
   handleChange = e => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
 
     this.setState(() => ({
       [name]: value,
       formState: ""
-    }))
+    }));
   };
 
   deleteContact = () => {
-    let {updateCount} = this.props;
+    let { updateCount } = this.props;
 
     this.setState({
       successHeader: "Contact Removed"
@@ -71,11 +69,11 @@ class ContactForm extends React.Component {
 
       this.getAllContacts();
       updateCount();
-    })
+    });
   };
 
-  saveContact = (event) => {
-    let {updateCount} = this.props;
+  saveContact = event => {
+    let { updateCount } = this.props;
 
     event.preventDefault();
 
@@ -111,7 +109,7 @@ class ContactForm extends React.Component {
     });
   };
 
-  selectContact = (event) => {
+  selectContact = event => {
     const contactId = event.target.value;
     this.setState({
       selectedContactId: contactId,
@@ -130,7 +128,7 @@ class ContactForm extends React.Component {
         buttonText: "Save",
         successHeader: "Contact Saved",
         deleteDisabled: true
-      })
+      });
     } else {
       ContactsClient.getOne(contactId, contact => {
         this.setState({
@@ -144,24 +142,39 @@ class ContactForm extends React.Component {
           buttonText: "Update",
           successHeader: "Contact Updated",
           deleteDisabled: false
-        })
-      })
+        });
+      });
     }
   };
 
   render() {
-    const { firstName, lastName, phone, email, addressStreet, addressPostcode, addressCity, contacts } = this.state;
+    const {
+      firstName,
+      lastName,
+      phone,
+      email,
+      addressStreet,
+      addressPostcode,
+      addressCity,
+      contacts
+    } = this.state;
 
     const contactList = contacts.map((contact, idx) => (
-      <option key={idx} value={contact._id}>{contact.firstName}&nbsp;{contact.lastName}</option>
+      <option key={idx} value={contact._id}>
+        {contact.firstName}&nbsp;{contact.lastName}
+      </option>
     ));
 
     return (
-      <div className="contact-form">
+      <div id="contact-form" className="contact-form">
         <div className="ui form saved-contacts">
           <div className="field">
             <label>Saved contacts</label>
-            <select className="ui search dropdown" onChange={this.selectContact} value={this.state.selectedContactId}>
+            <select
+              className="ui search dropdown"
+              onChange={this.selectContact}
+              value={this.state.selectedContactId}
+            >
               <option value="">Select Contact</option>
               {contactList}
             </select>
@@ -171,45 +184,102 @@ class ContactForm extends React.Component {
           <div className="fields">
             <div className="field">
               <label>First Name</label>
-              <input name="firstName" placeholder="First Name" type="text" onChange={this.handleChange} value={firstName}/>
+              <input
+                name="firstName"
+                placeholder="First Name"
+                type="text"
+                onChange={this.handleChange}
+                value={firstName}
+              />
             </div>
             <div className="field">
               <label>Last Name</label>
-              <input name="lastName" placeholder="Last Name" type="text" onChange={this.handleChange} value={lastName}/>
+              <input
+                name="lastName"
+                placeholder="Last Name"
+                type="text"
+                onChange={this.handleChange}
+                value={lastName}
+              />
             </div>
           </div>
           <div className="fields">
             <div className="field">
               <label>Telephone</label>
-              <input name="phone" placeholder="+31612345678" type="text" onChange={this.handleChange} value={phone}/>
+              <input
+                name="phone"
+                placeholder="+31612345678"
+                type="text"
+                onChange={this.handleChange}
+                value={phone}
+              />
             </div>
             <div className="field">
               <label>E-mail</label>
-              <input name="email" placeholder="joe@schmoe.com" type="email" onChange={this.handleChange} value={email}/>
+              <input
+                name="email"
+                placeholder="joe@schmoe.com"
+                type="email"
+                onChange={this.handleChange}
+                value={email}
+              />
             </div>
           </div>
           <div className="fields">
             <div className="field">
               <label>Street Address</label>
-              <input name="addressStreet" placeholder="Street Address" type="text" onChange={this.handleChange} value={addressStreet}/>
+              <input
+                name="addressStreet"
+                placeholder="Street Address"
+                type="text"
+                onChange={this.handleChange}
+                value={addressStreet}
+              />
             </div>
             <div className="field">
               <label>Postcode</label>
-              <input name="addressPostcode" placeholder="Postcode" type="text" onChange={this.handleChange} value={addressPostcode}/>
+              <input
+                name="addressPostcode"
+                placeholder="Postcode"
+                type="text"
+                onChange={this.handleChange}
+                value={addressPostcode}
+              />
             </div>
             <div className="field">
               <label>City</label>
-              <input name="addressCity" placeholder="City" type="text" onChange={this.handleChange} value={addressCity}/>
+              <input
+                name="addressCity"
+                placeholder="City"
+                type="text"
+                onChange={this.handleChange}
+                value={addressCity}
+              />
             </div>
           </div>
           <div className="ui success message">
             <div className="header">{this.state.successHeader}</div>
           </div>
-          <button className="ui button" type="button" onClick={this.saveContact} value={this.state.buttonText}>{this.state.buttonText}</button>
-          <button className="ui button" disabled={this.state.deleteDisabled} type="button" onClick={this.deleteContact} value="Delete">Delete</button>
+          <button
+            className="ui button"
+            type="button"
+            onClick={this.saveContact}
+            value={this.state.buttonText}
+          >
+            {this.state.buttonText}
+          </button>
+          <button
+            className="ui button"
+            disabled={this.state.deleteDisabled}
+            type="button"
+            onClick={this.deleteContact}
+            value="Delete"
+          >
+            Delete
+          </button>
         </form>
       </div>
-    )
+    );
   }
 }
 
