@@ -169,7 +169,7 @@ class App extends Component {
           <div className="ui placeholder segment">
             <div className="ui two column very relaxed stackable grid">
               <div className="column">
-                <div className="ui form">
+                <div className="ui form" id="credentials">
                   <div className="field">
                     <label>Username</label>
                     <div className="ui left icon input">
@@ -234,7 +234,7 @@ class App extends Component {
               Network
             </span> or <span style={{ fontWeight: "800" }}>Sources</span> tab in
             your browser developer tools to see if you can mock incoming
-            authorization requests of scripts.
+            authorization requests or scripts.
           </div>
         </div>
       );

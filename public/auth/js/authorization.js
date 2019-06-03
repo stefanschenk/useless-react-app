@@ -1,18 +1,18 @@
 function authorizationEnabled() {
-  return true;
+    return true;
 }
 
 function listUsers() {
-  return [
-    {
-      username: "mr_norights",
-      password: "1234Pass!",
-      pages: []
-    },
-    {
-      username: "mr_contacts",
-      password: "1234Pass!",
-      pages: ["contacts"]
-    }
-  ];
+    return [
+        {
+            username: "mr_norights",
+            password: "1234Pass!",
+            pages: []
+        },
+        {
+            username: "mr_contacts",
+            password: "1234Pass!",
+            pages: ["contacts"]
+        }
+    ];
 }
